@@ -3,7 +3,7 @@ import { VscError } from "react-icons/vsc";
 import CartItemCard from "../components/cart-item";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CarteducerInitialState } from "../types/reducer-types";
+import { CartReducerInitialState } from "../types/reducer-types";
 import { CartItem } from "../types/types";
 import { addToCart, calculatePrice, discountApplied, removeCartItem } from "../redux/reducer/cartReducer";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ const Cart = () => {
     total,
     shippingCharges,
     discount,
-  } = useSelector((state: { cartReducer: CarteducerInitialState }) => state.cartReducer);
+  } = useSelector((state: { cartReducer: CartReducerInitialState }) => state.cartReducer);
   const dispatch = useDispatch();
 
   const incrementHandler = (cartItem: CartItem) => {
