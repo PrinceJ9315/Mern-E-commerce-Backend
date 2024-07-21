@@ -3,13 +3,17 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from "../firebase";
+import {getUser} from "../redux/api/userAPI"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { MessageResponse } from "../types/api-types";
 import userAPI from "../redux/api/userAPI";
+import { userExist, userNotExist } from "../redux/reducer/userReducer";
+import {useDispatch} from "react-redux"
 
 const { useLoginMutation } = userAPI;
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [gender, setGender] = useState("");
   const [date, setDate] = useState("");
 
@@ -30,19 +34,21 @@ const Login = () => {
         _id: user.uid,
       });
 
-      if (res.data) {
+      if ("data" in res && res.data) {
         toast.success(res.data.message);
-      } else if (res.error) {
+        const data = await getUser(user.uid);
+        dispatch(userExist(data?.user!));
+      } else {
         const error = res.error as FetchBaseQueryError;
         const message = (error.data as MessageResponse).message;
         toast.error(message);
-      } else {
-        toast.error("An unexpected error occurred");
+        dispatch(userNotExist());
       }
-    } catch (error){
-      toast.error("Sign In Failed");
-    }
-  };
+      } catch (error) {
+        toast.error("Sign In Failed");
+      }
+      };
+      
   return (
     <div className="login">
       <main>
