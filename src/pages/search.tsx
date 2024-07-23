@@ -24,20 +24,18 @@ const Search = () => {
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
 
-
   const {
-    isLoading:productLoading,
-     data: searchedData,
-     isError: productIsError,
-     error: productError,
-     } = useSearchProductsQuery({
+    isLoading: productLoading,
+    data: searchedData,
+    isError: productIsError,
+    error: productError,
+  } = useSearchProductsQuery({
     search,
-     sort,
+    sort,
     category,
     page,
     price: maxPrice,
   });
-
 
   const dispatch = useDispatch();
 
@@ -48,7 +46,7 @@ const Search = () => {
   };
 
   const isPrevPage = page > 1;
-  const isNextPage = page < 4;
+  const isNextPage = searchedData && page < searchedData.totalPage;
 
   useEffect(() => {
     if (isError) {
@@ -59,9 +57,15 @@ const Search = () => {
       const err = productError as CustomError;
       toast.error(err.data.message);
     }
+  }, [isError, error, productIsError, productError]);
 
-
-  }, []);
+  const resetFilters = () => {
+    setSearch("");
+    setSort("");
+    setMaxPrice(100000);
+    setCategory("");
+    setPage(1);
+  };
 
   return (
     <div className="product-search-page">
@@ -102,6 +106,10 @@ const Search = () => {
               ))}
           </select>
         </div>
+
+        <button className="reset-button" onClick={resetFilters}>
+         <h3>Reset Filters</h3> 
+        </button>
       </aside>
       <main>
         <h1>Products</h1>
@@ -111,40 +119,41 @@ const Search = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        {
-          productLoading ? <Skeleton length = {15}/> : <div className="search-product-list">
-          {searchedData?.products.map ((i) => (
-          <ProductCard
-          key={i._id}
-            productId={i._id}
-            name={i.name}
-            price={Number(i.price)}
-            stock={i.stock}
-            handler={addToCartHandler}
-            photo={i.photo}
-          />
-          ))}
-        </div>
-        }
-        {
-          searchedData && searchedData.totalPage > 1 && (
+        {productLoading ? (
+          <Skeleton length={15} />
+        ) : (
+          <div className="search-product-list">
+            {searchedData?.products.map((i) => (
+              <ProductCard
+                key={i._id}
+                productId={i._id}
+                name={i.name}
+                price={Number(i.price)}
+                stock={i.stock}
+                handler={addToCartHandler}
+                photo={i.photo}
+              />
+            ))}
+          </div>
+        )}
+        {searchedData && searchedData.totalPage > 1 && (
           <article>
-          <button
-            disabled={!isPrevPage}
-            onClick={() => setPage((prev) => prev - 1)}
-          >
-            Prev
-          </button>
-          <span>
-            {page} of {searchedData.totalPage}
-          </span>
-          <button
-            disabled={!isNextPage}
-            onClick={() => setPage((prev) => prev + 1)}
-          >
-            Next
-          </button>
-        </article>
+            <button
+              disabled={!isPrevPage}
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              Prev
+            </button>
+            <span>
+              {page} of {searchedData.totalPage}
+            </span>
+            <button
+              disabled={!isNextPage}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
+          </article>
         )}
       </main>
     </div>
