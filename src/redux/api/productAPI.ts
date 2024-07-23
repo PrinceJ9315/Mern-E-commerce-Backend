@@ -18,19 +18,15 @@ export const productAPI = createApi({
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
-    latestProducts: builder.query<AllProductsResponse, { category?: string, page: number }>({
-      query: ({ category, page }) => {
-        let base = `latest?page=${page}`;
-        if (category) base += `&category=${category}`;
-        return base;
-      },
+    latestProducts: builder.query<AllProductsResponse, string>({
+      query: () => "latest",
       providesTags: ["product"],
     }),
     allProducts: builder.query<AllProductsResponse, string>({
       query: (id) => `admin-products?id=${id}`,
       providesTags: ["product"],
     }),
-    categories: builder.query<CategoriesResponse, void>({
+    categories: builder.query<CategoriesResponse, string>({
       query: () => `categories`,
       providesTags: ["product"],
     }),
