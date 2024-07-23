@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Skeleton } from "../components/loader";
 import ProductCard from "../components/product-card";
 import { addToCart } from "../redux/reducer/cartReducer";
@@ -18,8 +18,9 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
-const {useLatestProductsQuery} = productAPI;
+const { useLatestProductsQuery } = productAPI;
 
 const clients = [
   {
@@ -111,8 +112,7 @@ const banners = [
   "https://blog.daraz.pk/wp-content/uploads/2021/06/GET-READY-DFW-BANNER-2.jpg",
   "https://images-eu.ssl-images-amazon.com/images/G/31/img22/pc/pongal/PS_Mob_1_Header_ASINS_Final_770x300.jpg",
   "https://assets.dragonmart.ae//pictures/0103296_DragonMart_categorylisting_computer&electronics_1of3.jpeg",
-  "https://img.freepik.com/free-vector/gradient-gaming-offer-sale-banner_23-2149834709.jpg?t=st=1719888812~exp=1719892412~hmac=ea5f28573ad31882bce149ddd927a320f28e577bef54f406687e1aea0bbd5837"
-  
+  "https://img.freepik.com/free-vector/gradient-gaming-offer-sale-banner_23-2149834709.jpg?t=st=1719888812~exp=1719892412~hmac=ea5f28573ad31882bce149ddd927a320f28e577bef54f406687e1aea0bbd5837",
 ];
 const categories = [
   "Electronics",
@@ -148,9 +148,19 @@ const services = [
 ];
 
 const Home = () => {
-  const { data, isError, isLoading } = useLatestProductsQuery("");
-
+  const location = useLocation();
   const dispatch = useDispatch();
+  const [category, setCategory] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setCategory(params.get("category") || undefined);
+  }, [location]);
+
+  const { data, isError, isLoading } = useLatestProductsQuery({
+    category,
+    page: 1,
+  });
 
   const addToCartHandler = (cartItem: CartItem) => {
     if (cartItem.stock < 1) return toast.error("Out of Stock");
