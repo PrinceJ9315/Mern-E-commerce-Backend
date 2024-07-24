@@ -64,7 +64,6 @@ body{
 
 
 .header{
-
   @include flex(row,flex-end,stretch, 1.5rem);
   padding: 1rem;
   a {
@@ -89,16 +88,19 @@ body{
   }
 dialog{
 border: 1px solid #a9aab1;
-border-radius: 5px;
-padding: 10px;
+border-radius: 7px;
+padding:10px;
 width: 100px;
 position: absolute;
 left: calc(100% - 100px);
-top: 7%;
+top: 6%;
+z-index: 10;
+background-color: white;
 > div {
   @include flex(column, flex-start,center,0.25rem);
  }
 }
+
 }
 
 .not-found{

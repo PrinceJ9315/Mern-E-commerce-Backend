@@ -1,3 +1,45 @@
+
+
+
+.site-name {
+  font-size: 1.8rem; 
+  text-decoration: underline;
+  font-weight: bold;
+  color: #2e3131;
+  margin: 0;
+  flex-grow: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  letter-spacing: 0.3px; 
+  text-transform: uppercase; 
+  transition: color 0.3s ease, text-shadow 0.3s ease; 
+}
+
+.site-name:hover {
+  color: grey; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+
+nav {
+  display: flex;
+  align-items: center; /* Ensure items are centered vertically */
+}
+
+nav a, nav button {
+  margin: 0 0px; /* Space between links and buttons */
+  display: flex; /* Ensure that icons and text align properly */
+  align-items: center; /* Center icons vertically */
+}
+
+.icon {
+  font-size: 17px; /* Set a specific size for the icons */
+}
+
+
+
+
+
+
 .footer {
   background-color: #333;
   color: #fff;
@@ -90,10 +132,10 @@
 
 
 .home {
-   padding: 2rem 5%;
+   padding: 1rem 4%;
    display: flex;
    flex-direction: column;
-   // min-height: calc(100vh - 4rem);
+  //  min-height: calc(100vh - 4rem);
    max-width: 1920px;
    margin: auto;
    width: 100%;
@@ -137,6 +179,8 @@
            cursor: pointer;
            color: red;
            flex: none;
+           font-size: 1.2rem;
+           font-family:'Times New Roman', Times, serif;
          }
        }
        .findmore {
@@ -156,7 +200,7 @@
    }
  
    > main {
-     margin: 2rem 0;
+     margin: rem 0;
      width: 100%;
      display: flex;
      gap: 1rem;

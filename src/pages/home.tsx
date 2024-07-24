@@ -8,6 +8,7 @@ import productAPI from "../redux/api/productAPI";
 import { CartItem } from "../types/types";
 import videoCover from "../assets/videos/Y2meta.app - Clothing commercial video _ Jacferdi _ Fujifilm X-T3-(1080p).mp4";
 import { FaAnglesDown, FaHeadset } from "react-icons/fa6";
+
 import { motion } from "framer-motion";
 import { Slider } from "6pp";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -104,15 +105,15 @@ const clients = [
 
 const banners = [
   "https://d2xamzlzrdbdbn.cloudfront.net/bg/d279c182-2e22-4224-ad70-4d3a86b5fa9a24190602.webp",
-  "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01789c117518103.6077379020970.png",
+  "https://fashionclinik.com/wp-content/themes/yootheme/cache/eb/Fashion-home-banner-eb944ea1.jpeg",
   "https://t4.ftcdn.net/jpg/03/35/23/69/360_F_335236928_yHOokJcL9Ban3Z3mR0SkGZdfktTHGB05.jpg",
-  "https://venngage-wordpress.s3.amazonaws.com/uploads/2021/10/Email-Banner-Furniture-Sale.png",
+  "https://i.imgur.com/pv89xWd.jpeg",
   "https://www.chuwi.com/public/upload/image/20220415/c16c2ea0cc141680d7ca75ea66bc84e1.jpg",
   "https://blog.daraz.pk/wp-content/uploads/2021/06/GET-READY-DFW-BANNER-2.jpg",
+  "https://i.imgur.com/1jEHoEm.jpeg",
   "https://images-eu.ssl-images-amazon.com/images/G/31/img22/pc/pongal/PS_Mob_1_Header_ASINS_Final_770x300.jpg",
   "https://assets.dragonmart.ae//pictures/0103296_DragonMart_categorylisting_computer&electronics_1of3.jpeg",
-  "https://img.freepik.com/free-vector/gradient-gaming-offer-sale-banner_23-2149834709.jpg?t=st=1719888812~exp=1719892412~hmac=ea5f28573ad31882bce149ddd927a320f28e577bef54f406687e1aea0bbd5837"
-  
+  "https://i.imgur.com/Wq4gd2a.jpeg"
 ];
 const categories = [
   "Electronics",
