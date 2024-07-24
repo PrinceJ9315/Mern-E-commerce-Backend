@@ -3,7 +3,6 @@
 
 .site-name {
   font-size: 1.8rem; 
-  text-decoration: underline;
   font-weight: bold;
   color: #2e3131;
   margin: 0;
@@ -32,7 +31,7 @@ nav a, nav button {
 }
 
 .icon {
-  font-size: 17px; /* Set a specific size for the icons */
+  font-size: 19px; /* Set a specific size for the icons */
 }
 
 
@@ -151,7 +150,7 @@ nav a, nav button {
    > div {
      @include flex;
      align-items: stretch;
-     margin: 2rem 0;
+     margin: 2.5rem 0;
      gap: 5rem;
  
      aside {
@@ -160,7 +159,7 @@ nav a, nav button {
        flex: none;
        h1 {
          @include heading(1px);
-         margin-bottom: 3rem;
+         margin-bottom: 2rem;
          @include flex(row, space-between, center);
          &::before {
            content: "";
@@ -177,10 +176,15 @@ nav a, nav button {
          list-style: none;
          > li {
            cursor: pointer;
-           color: red;
+           color: rgb(0, 0, 0);
            flex: none;
            font-size: 1.2rem;
            font-family:'Times New Roman', Times, serif;
+          transition: background-color 0.3s ease, color 0.3s ease;
+          margin-bottom: 3px;
+           :hover {
+            color: gray ;
+          }
          }
        }
        .findmore {
@@ -191,7 +195,7 @@ nav a, nav button {
  
    > h1 {
      @include heading(1px);
-     margin-top: 3rem;
+     margin-top: 2rem;
      @include flex(row, space-between, center);
    }
  
