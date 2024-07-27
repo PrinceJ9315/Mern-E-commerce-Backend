@@ -19,6 +19,7 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa6";
+import { useEffect } from "react";
 
 const {useLatestProductsQuery} = productAPI;
 
@@ -158,8 +159,9 @@ const Home = () => {
     dispatch(addToCart(cartItem));
     toast.success("Added to cart");
   };
-
+useEffect(() => {
   if (isError) toast.error("Cannot Fetch the Products");
+}, [isError]);
 
   const coverMessage =
     "Fashion isn't just clothes; it's a vibrant language. Silhouettes and textures speak volumes, a conversation starter with every bold print. It's a way to tell our story, a confidence booster, or a playful exploration. From elegance to rebellion, fashion lets us navigate the world in style.".split(
@@ -326,7 +328,7 @@ const Home = () => {
               <div>{service.icon}</div>
               <section>
                 <h3>{service.title}</h3>
-                <p>{service.title}</p>
+                <p>{service.description}</p>
               </section>
             </motion.li>
           ))}

@@ -1,5 +1,5 @@
 import { FaSearch, FaShoppingBag, FaSignInAlt, FaUser, FaSignOutAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { User } from "../types/types";
 import { signOut } from "firebase/auth";
@@ -12,6 +12,11 @@ interface PropsType {
 
 const Header = ({ user }: PropsType) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    const handleMouseEnter = () => {
+        navigate("/");
+    }
 
     const logoutHandler = async () => {
         try {
@@ -25,8 +30,10 @@ const Header = ({ user }: PropsType) => {
 
     return (
         <nav className="header">
-            <div className="site-name">
-                URBANCART
+            <div className="site-name"
+            onClick={handleMouseEnter}
+            >
+                ShopZen
             </div>
             <Link onClick={() => setIsOpen(false)} to={"/"}>
                 HOME
