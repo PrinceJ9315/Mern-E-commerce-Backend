@@ -8,20 +8,14 @@ import productAPI from "../redux/api/productAPI";
 import { CartItem } from "../types/types";
 import videoCover from "../assets/videos/Y2meta.app - Clothing commercial video _ Jacferdi _ Fujifilm X-T3-(1080p).mp4";
 import { FaAnglesDown, FaHeadset } from "react-icons/fa6";
-
 import { motion } from "framer-motion";
 import { Slider } from "6pp";
 import { TbTruckDelivery } from "react-icons/tb";
 import { LuShieldCheck } from "react-icons/lu";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa6";
 import { useEffect } from "react";
 
-const {useLatestProductsQuery} = productAPI;
+const { useLatestProductsQuery } = productAPI;
 
 const clients = [
   {
@@ -104,6 +98,8 @@ const clients = [
   },
 ];
 
+
+
 const banners = [
   "https://d2xamzlzrdbdbn.cloudfront.net/bg/d279c182-2e22-4224-ad70-4d3a86b5fa9a24190602.webp",
   "https://fashionclinik.com/wp-content/themes/yootheme/cache/eb/Fashion-home-banner-eb944ea1.jpeg",
@@ -116,6 +112,8 @@ const banners = [
   "https://assets.dragonmart.ae//pictures/0103296_DragonMart_categorylisting_computer&electronics_1of3.jpeg",
   "https://i.imgur.com/Wq4gd2a.jpeg"
 ];
+
+
 const categories = [
   "Electronics",
   "Mobiles",
@@ -130,6 +128,9 @@ const categories = [
   "Toys",
   "Fitness",
 ];
+
+
+
 
 const services = [
   {
@@ -149,6 +150,7 @@ const services = [
   },
 ];
 
+
 const Home = () => {
   const { data, isError, isLoading } = useLatestProductsQuery("");
 
@@ -159,20 +161,17 @@ const Home = () => {
     dispatch(addToCart(cartItem));
     toast.success("Added to cart");
   };
-useEffect(() => {
-  if (isError) toast.error("Cannot Fetch the Products");
-}, [isError]);
 
-  const coverMessage =
-    "Fashion isn't just clothes; it's a vibrant language. Silhouettes and textures speak volumes, a conversation starter with every bold print. It's a way to tell our story, a confidence booster, or a playful exploration. From elegance to rebellion, fashion lets us navigate the world in style.".split(
-      " "
-    );
+  useEffect(() => {
+    if (isError) toast.error("Cannot Fetch the Products");
+  }, [isError]);
+
+  const coverMessage = "Fashion isn't just clothes; it's a vibrant language. Silhouettes and textures speak volumes, a conversation starter with every bold print. It's a way to tell our story, a confidence booster, or a playful exploration. From elegance to rebellion, fashion lets us navigate the world in style.".split(" ");
 
   return (
     <>
       <div className="home">
         <section></section>
-
         <div>
           <aside>
             <h1>Categories</h1>
@@ -184,31 +183,20 @@ useEffect(() => {
               ))}
             </ul>
           </aside>
-          <Slider
-            autoplay
-            autoplayDuration={1500}
-            showNav={false}
-            images={banners}
-          />
+          <Slider autoplay autoplayDuration={1500} showNav={false} images={banners} />
         </div>
-
         <h1>
           Latest Products
-          <Link to="/search" className="findmore">
-            More
-          </Link>
+          <Link to="/search" className="findmore">More</Link>
         </h1>
-
         <main>
           {isLoading ? (
-            <>
-              {Array.from({ length: 6 }, (_, i) => (
-                <div key={i} style={{ height: "25rem" }}>
-                  <Skeleton width="18.75rem" length={1} height="20rem" />
-                  <Skeleton width="18.75rem" length={2} height="1.95rem" />
-                </div>
-              ))}
-            </>
+            Array.from({ length: 6 }, (_, i) => (
+              <div key={i} style={{ height: "25rem" }}>
+                <Skeleton width="18.75rem" length={1} height="20rem" />
+                <Skeleton width="18.75rem" length={2} height="1.95rem" />
+              </div>
+            ))
           ) : (
             data?.products.map((i) => (
               <ProductCard
@@ -219,12 +207,12 @@ useEffect(() => {
                 stock={i.stock}
                 handler={addToCartHandler}
                 photo={i.photo}
+                className="product-card"
               />
             ))
           )}
         </main>
       </div>
-
       <article className="cover-video-container">
         <div className="cover-video-overlay"></div>
         <video autoPlay loop muted src={videoCover} />
@@ -240,10 +228,7 @@ useEffect(() => {
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{
-                duration: 0.25,
-                delay: i / 10,
-              }}
+              transition={{ duration: 0.25, delay: i / 10 }}
               key={i}
             >
               {el}{" "}
@@ -251,78 +236,43 @@ useEffect(() => {
           ))}
         </div>
         <motion.span
-          animate={{
-            y: [0, 10, 0],
-            transition: {
-              duration: 1,
-              repeat: Infinity,
-            },
-          }}
+          animate={{ y: [0, 10, 0], transition: { duration: 1, repeat: Infinity } }}
         >
           <FaAnglesDown />
         </motion.span>
       </article>
-
       <article className="our-clients">
         <div>
           <h2>Our Clients</h2>
           <div>
             {clients.map((client, i) => (
               <motion.img
-                initial={{
-                  opacity: 0,
-                  x: -10,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                  transition: {
-                    delay: i / 20,
-                    ease: "circIn",
-                  },
-                }}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0, transition: { delay: i / 20, ease: "circIn" } }}
                 src={client.src}
                 alt={client.alt}
                 key={i}
+                className="client-logo"
               />
             ))}
           </div>
-
           <motion.p
             initial={{ opacity: 0, y: -100 }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              transition: {
-                delay: clients.length / 20,
-              },
-            }}
+            whileInView={{ opacity: 1, y: 0, transition: { delay: clients.length / 20 } }}
           >
             Trusted By 100+ Companies in 30+ countries
           </motion.p>
         </div>
       </article>
-
       <hr
-        style={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          border: "none",
-          height: "1px",
-        }}
+        style={{ backgroundColor: "rgba(0,0,0,0.1)", border: "none", height: "1px" }}
       />
-
       <article className="our-services">
         <ul>
           {services.map((service, i) => (
             <motion.li
               initial={{ opacity: 0, y: -100 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  delay: i / 20,
-                },
-              }}
+              whileInView={{ opacity: 1, y: 0, transition: { delay: i / 20 } }}
               key={service.title}
             >
               <div>{service.icon}</div>
@@ -340,72 +290,38 @@ useEffect(() => {
             <div className="footer-col">
               <h4>Company</h4>
               <ul>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Our Services</a>
-                </li>
-                <li>
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#">Affiliate Program</a>
-                </li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Services</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Affiliate Program</a></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Get Help</h4>
               <ul>
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-                <li>
-                  <a href="#">Shipping</a>
-                </li>
-                <li>
-                  <a href="#">Returns</a>
-                </li>
-                <li>
-                  <a href="#">Order Status</a>
-                </li>
-                <li>
-                  <a href="#">Payment Options</a>
-                </li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Order Status</a></li>
+                <li><a href="#">Payment Options</a></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Online Shop</h4>
               <ul>
-                <li>
-                  <a href="#">Watch</a>
-                </li>
-                <li>
-                  <a href="#">Bag</a>
-                </li>
-                <li>
-                  <a href="#">Shoes</a>
-                </li>
-                <li>
-                  <a href="#">Dress</a>
-                </li>
+                <li><a href="#">Watch</a></li>
+                <li><a href="#">Bag</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Dress</a></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Follow Us</h4>
               <div className="social-links">
-                <a href="#">
-                  <FaFacebookF />
-                </a>
-                <a href="#">
-                  <FaTwitter />
-                </a>
-                <a href="#">
-                  <FaInstagram />
-                </a>
-                <a href="#">
-                  <FaLinkedinIn />
-                </a>
+                <a href="#"><FaFacebookF /></a>
+                <a href="#"><FaTwitter /></a>
+                <a href="#"><FaInstagram /></a>
+                <a href="#"><FaLinkedinIn /></a>
               </div>
             </div>
           </div>

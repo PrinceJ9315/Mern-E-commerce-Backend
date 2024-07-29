@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "../components/product-card";
 import { CustomError } from "../types/api-types";
 import toast from "react-hot-toast";
@@ -16,8 +16,8 @@ const Search = () => {
   const {
     data: categoriesResponse,
     isLoading: loadingCategories,
-    isError,
-    error,
+    isError: categoriesIsError,
+    error: categoriesError,
   } = useCategoriesQuery("");
 
   const [search, setSearch] = useState("");
@@ -50,14 +50,20 @@ const Search = () => {
   const isPrevPage = page > 1;
   const isNextPage = page < 4;
 
-  if (isError) {
-    const err = error as CustomError;
-    toast.error(err.data.message);
-  }
-  if (productIsError) {
-    const err = productError as CustomError;
-    toast.error(err.data.message);
-  }
+  useEffect(() => {
+    if (categoriesIsError) {
+      const err = categoriesError as CustomError;
+      toast.error(err.data.message);
+    }
+  }, [categoriesIsError, categoriesError]);
+
+  useEffect(() => {
+    if (productIsError) {
+      const err = productError as CustomError;
+      toast.error(err.data.message);
+    }
+  }, [productIsError, productError]);
+
   return (
     <div className="product-search-page">
       <aside>

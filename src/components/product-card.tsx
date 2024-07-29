@@ -9,6 +9,7 @@ type ProductsProps = {
   price: number;
   stock: number;
   handler:(cartItem: CartItem) => string | undefined;
+  className?: string;
 };
 
 

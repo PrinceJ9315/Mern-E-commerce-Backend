@@ -54,7 +54,7 @@ const App = () => {
       }
     });
 
-    return () => unsubscribe(); // Clean up subscription on unmount
+    return () => unsubscribe(); 
   }, [dispatch]);
 
   return loading ? (
