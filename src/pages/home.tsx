@@ -110,7 +110,10 @@ const banners = [
   "https://i.imgur.com/1jEHoEm.jpeg",
   "https://images-eu.ssl-images-amazon.com/images/G/31/img22/pc/pongal/PS_Mob_1_Header_ASINS_Final_770x300.jpg",
   "https://assets.dragonmart.ae//pictures/0103296_DragonMart_categorylisting_computer&electronics_1of3.jpeg",
-  "https://i.imgur.com/Wq4gd2a.jpeg"
+  "https://i.imgur.com/Wq4gd2a.jpeg",
+  "https://res.cloudinary.com/dj5q966nb/image/upload/v1719253445/rmbjpuzctjdbtt8hewaz.png",
+  "https://res.cloudinary.com/dj5q966nb/image/upload/v1719253433/ticeufjqvf6napjhdiee.png",
+
 ];
 
 
