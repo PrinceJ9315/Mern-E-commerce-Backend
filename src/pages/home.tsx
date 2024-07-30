@@ -101,16 +101,7 @@ const clients = [
 
 
 const banners = [
-  "https://d2xamzlzrdbdbn.cloudfront.net/bg/d279c182-2e22-4224-ad70-4d3a86b5fa9a24190602.webp",
-  "https://fashionclinik.com/wp-content/themes/yootheme/cache/eb/Fashion-home-banner-eb944ea1.jpeg",
-  "https://t4.ftcdn.net/jpg/03/35/23/69/360_F_335236928_yHOokJcL9Ban3Z3mR0SkGZdfktTHGB05.jpg",
-  "https://i.imgur.com/pv89xWd.jpeg",
-  "https://www.chuwi.com/public/upload/image/20220415/c16c2ea0cc141680d7ca75ea66bc84e1.jpg",
-  "https://blog.daraz.pk/wp-content/uploads/2021/06/GET-READY-DFW-BANNER-2.jpg",
-  "https://i.imgur.com/1jEHoEm.jpeg",
-  "https://images-eu.ssl-images-amazon.com/images/G/31/img22/pc/pongal/PS_Mob_1_Header_ASINS_Final_770x300.jpg",
-  "https://assets.dragonmart.ae//pictures/0103296_DragonMart_categorylisting_computer&electronics_1of3.jpeg",
-  "https://i.imgur.com/Wq4gd2a.jpeg"
+  "https://t3.ftcdn.net/jpg/04/55/53/78/240_F_455537818_2AwVoujHe2gH7IRYTgrZ932Nt4MdwTXD.jpg"
 ];
 
 
