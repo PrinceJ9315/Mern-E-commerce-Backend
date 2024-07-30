@@ -33,7 +33,7 @@ const Header = ({ user }: PropsType) => {
             <div className="site-name"
             onClick={handleMouseEnter}
             >
-                ShopZen
+
             </div>
             <Link onClick={() => setIsOpen(false)} to={"/"}>
                 HOME
